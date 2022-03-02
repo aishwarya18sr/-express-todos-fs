@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   todos.init({
     title: DataTypes.STRING,
+    description: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'todos',
