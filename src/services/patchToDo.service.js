@@ -26,7 +26,7 @@ const patchToDo = async (id, todo) => {
     }
     return givenTodo;
   });
-  await writeFile('C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt', convertToText(newToDoList));
+  await writeFile('./resources/todos.txt', convertToText(newToDoList));
   const updatedToDoList = getToDo();
   return Promise.resolve(updatedToDoList);
 };

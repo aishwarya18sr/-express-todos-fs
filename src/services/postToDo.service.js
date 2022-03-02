@@ -12,7 +12,7 @@ const postToDo = async (todo) => {
   }
   const id = await getNextId();
   const nextToDo = `\n${id}|${todo}`;
-  await appendFile('C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt', nextToDo);
+  await appendFile('./resources/todos.txt', nextToDo);
   const toDoList = getToDo();
   return Promise.resolve(toDoList);
 };

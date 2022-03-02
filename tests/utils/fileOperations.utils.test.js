@@ -12,10 +12,10 @@ describe('readfile function', () => {
   });
   test('should return error when file path not exists', () => {
     jest.spyOn(fs, 'readFile').mockImplementation((path, encoding, callback) => {
-      callback(new Error('ENOENT: no such file or directory, open \'C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt\''), '');
+      callback(new Error('ENOENT: no such file or directory'), '');
     });
     return readFile('../../resources/todos1.txt').catch((data) => {
-      expect(data).toBe('ENOENT: no such file or directory, open \'C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt\'');
+      expect(data).toBe('ENOENT: no such file or directory');
     });
   });
 });
@@ -31,10 +31,10 @@ describe('appendfile function', () => {
   });
   test('should return error when file path not exists', () => {
     jest.spyOn(fs, 'readFile').mockImplementation((path, data, callback) => {
-      callback(new Error('ENOENT: no such file or directory, open \'C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt\''), '');
+      callback(new Error('ENOENT: no such file or directory'), '');
     });
     return readFile('../../resources/todos1.txt', '7|get milk').catch((data) => {
-      expect(data).toBe('ENOENT: no such file or directory, open \'C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt\'');
+      expect(data).toBe('ENOENT: no such file or directory');
     });
   });
 });
@@ -50,10 +50,10 @@ describe('writefile function', () => {
   });
   test('should return error when file path not exists', () => {
     jest.spyOn(fs, 'readFile').mockImplementation((path, data, callback) => {
-      callback(new Error('ENOENT: no such file or directory, open \'C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt\''), '');
+      callback(new Error('ENOENT: no such file or directory'), '');
     });
     return readFile('../../resources/todos1.txt', '7|get milk').catch((data) => {
-      expect(data).toBe('ENOENT: no such file or directory, open \'C:\\Users\\Aishwarya S R\\-express-todos-fs\\resources\\todos.txt\'');
+      expect(data).toBe('ENOENT: no such file or directory');
     });
   });
 });
