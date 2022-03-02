@@ -7,7 +7,7 @@ env.config();
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(bodyParser.json());
-app.use('/todo', router);
+app.use('/notes', router);
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);

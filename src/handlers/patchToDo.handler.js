@@ -1,8 +1,9 @@
-const { patchToDo } = require('../services/patchToDo.service');
+const { patchToDoById } = require('../services/dbOperations.service');
 
 const patchToDoHandler = async (req, res) => {
-  const { id, todo } = req.body;
-  const toDoList = await patchToDo(id, todo);
+  const { id } = req.params;
+  const { title, description } = req.body;
+  const toDoList = await patchToDoById(id, title, description);
   res.json({
     toDoList,
   }).status(200);

@@ -1,8 +1,8 @@
-const { postToDo } = require('../services/postToDo.service');
+const { postToDo } = require('../services/dbOperations.service');
 
 const postToDoHandler = async (req, res) => {
-  const { todo } = req.body;
-  const toDoList = await postToDo(todo);
+  const { title, description } = req.body;
+  const toDoList = await postToDo(title, description);
   res.json({
     toDoList,
   }).status(200);

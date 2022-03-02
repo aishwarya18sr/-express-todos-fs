@@ -1,4 +1,4 @@
-const { getToDo } = require('../services/getToDo.services');
+const { getToDo } = require('../services/dbOperations.service');
 
 const getToDoHandler = async (req, res) => {
   const toDoList = await getToDo();
