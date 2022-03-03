@@ -6,6 +6,11 @@ const dbGetToDo = async () => {
 };
 
 const dbGetToDoById = async (givenId) => {
+  if (givenId === '') {
+    throw new Error('Id has not been provided');
+  } else if (typeof givenId !== 'string' && typeof givenId !== 'number') {
+    throw new Error('Invalid input type');
+  }
   const requiredTodo = await todos.findAll({
     where: {
       id: givenId,
@@ -20,6 +25,11 @@ const dbPostToDo = async (givenTitle, givenDescription) => {
 };
 
 const dbPatchToDoById = async (givenId, givenTitle, gievnDescription) => {
+  if (givenId === '') {
+    throw new Error('Id has not been provided');
+  } else if (typeof givenId !== 'string' && typeof givenId !== 'number') {
+    throw new Error('Invalid input type');
+  }
   const result = await todos.update({
     title: givenTitle,
     description: gievnDescription,
@@ -32,6 +42,11 @@ const dbPatchToDoById = async (givenId, givenTitle, gievnDescription) => {
 };
 
 const dbPutToDoById = async (givenId, givenTitle, gievnDescription) => {
+  if (givenId === '') {
+    throw new Error('Id has not been provided');
+  } else if (typeof givenId !== 'string' && typeof givenId !== 'number') {
+    throw new Error('Invalid input type');
+  }
   const result = await todos.update({
     title: givenTitle,
     description: gievnDescription,
@@ -44,6 +59,11 @@ const dbPutToDoById = async (givenId, givenTitle, gievnDescription) => {
 };
 
 const dbDeleteToDoById = async (givenId) => {
+  if (givenId === '') {
+    throw new Error('Id has not been provided');
+  } else if (typeof givenId !== 'string' && typeof givenId !== 'number') {
+    throw new Error('Invalid input type');
+  }
   const result = await todos.destroy({
     where: {
       id: givenId,

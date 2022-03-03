@@ -24,9 +24,54 @@ describe('dbGetToDoById function', () => {
       updatedAt: '2022-03-02T10:25:38.430Z',
     };
     const toDoMock = jest.spyOn(todos, 'findAll').mockResolvedValue(expectedToDoList);
-    const receivedToDoList = await dbGetToDoById();
+    const receivedToDoList = await dbGetToDoById(2);
     expect(toDoMock).toHaveBeenCalled();
     expect(receivedToDoList).toStrictEqual(expectedToDoList);
+  });
+  test('should return error if id is not provided', async () => {
+    const toDoMock = jest.spyOn(todos, 'findAll').mockResolvedValue(new Error('Id has not been provided'));
+    try {
+      await dbGetToDoById('');
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Id has not been provided');
+    }
+  });
+  test('should return invalid input if id is a boolean', async () => {
+    const toDoMock = jest.spyOn(todos, 'findAll').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbGetToDoById(true);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is array', async () => {
+    const toDoMock = jest.spyOn(todos, 'findAll').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbGetToDoById([2, 3]);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is float', async () => {
+    const toDoMock = jest.spyOn(todos, 'findAll').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbGetToDoById(2.5);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is object', async () => {
+    const toDoMock = jest.spyOn(todos, 'findAll').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbGetToDoById({ a: 3 });
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
   });
 });
 
@@ -49,6 +94,51 @@ describe('dbPatchToDoById function', () => {
     await dbPatchToDoById(id, title, description);
     expect(toDoMock).toHaveBeenCalled();
   });
+  test('should return error if id is not provided', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Id has not been provided'));
+    try {
+      await dbPatchToDoById('');
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Id has not been provided');
+    }
+  });
+  test('should return invalid input if id is a boolean', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPatchToDoById(true);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is array', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPatchToDoById([2, 3]);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is float', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPatchToDoById(2.5);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is object', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPatchToDoById({ a: 3 });
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
 });
 
 describe('dbPutToDoById function', () => {
@@ -60,6 +150,51 @@ describe('dbPutToDoById function', () => {
     await dbPutToDoById(id, title, description);
     expect(toDoMock).toHaveBeenCalled();
   });
+  test('should return error if id is not provided', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Id has not been provided'));
+    try {
+      await dbPutToDoById('');
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Id has not been provided');
+    }
+  });
+  test('should return invalid input if id is a boolean', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPutToDoById(true);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is array', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPutToDoById([2, 3]);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is float', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPutToDoById(2.5);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is object', async () => {
+    const toDoMock = jest.spyOn(todos, 'update').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbPutToDoById({ a: 3 });
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
 });
 
 describe('dbDeleteToDoById function', () => {
@@ -68,5 +203,50 @@ describe('dbDeleteToDoById function', () => {
     const toDoMock = jest.spyOn(todos, 'destroy').mockResolvedValue({});
     await dbDeleteToDoById(id);
     expect(toDoMock).toHaveBeenCalled();
+  });
+  test('should return error if id is not provided', async () => {
+    const toDoMock = jest.spyOn(todos, 'destroy').mockResolvedValue(new Error('Id has not been provided'));
+    try {
+      await dbDeleteToDoById('');
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Id has not been provided');
+    }
+  });
+  test('should return invalid input if id is a boolean', async () => {
+    const toDoMock = jest.spyOn(todos, 'destroy').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbDeleteToDoById(true);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is array', async () => {
+    const toDoMock = jest.spyOn(todos, 'destroy').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbDeleteToDoById([2, 3]);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is float', async () => {
+    const toDoMock = jest.spyOn(todos, 'destroy').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbDeleteToDoById(2.5);
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
+  });
+  test('should return invalid input if id is object', async () => {
+    const toDoMock = jest.spyOn(todos, 'destroy').mockResolvedValue(new Error('Invalid input type'));
+    try {
+      await dbDeleteToDoById({ a: 3 });
+    } catch (err) {
+      expect(toDoMock).toHaveBeenCalled();
+      expect(err.message).toBe('Invalid input type');
+    }
   });
 });
